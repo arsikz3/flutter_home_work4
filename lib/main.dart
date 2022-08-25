@@ -78,7 +78,22 @@ class _MyHomePageState extends State<MyHomePage> {
                   for (var el in data[name])
                     Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Image.network(el),
+                      child: //Image.network(el),
+                          Image.network(
+                        el,
+                        fit: BoxFit.cover,
+                        repeat: ImageRepeat.noRepeat,
+                        errorBuilder: (context, error, stackTrace) {
+                          return Container(
+                            color: Colors.amber,
+                            alignment: Alignment.center,
+                            child: const Text(
+                              'Whoops!',
+                              style: TextStyle(fontSize: 30),
+                            ),
+                          );
+                        },
+                      ),
                     ),
 
                 // вариант 2
