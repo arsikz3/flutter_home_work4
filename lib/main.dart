@@ -75,12 +75,12 @@ class _MyHomePageState extends State<MyHomePage> {
               key: PageStorageKey(name),
               children: <Widget>[
                 if (data[name] != null)
-                  for (var el in data[name])
+                  for (var element in data[name])
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: //Image.network(el),
                           Image.network(
-                        el,
+                        element,
                         fit: BoxFit.cover,
                         repeat: ImageRepeat.noRepeat,
                         errorBuilder: (context, error, stackTrace) {
