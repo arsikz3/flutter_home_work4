@@ -78,7 +78,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   for (var el in data[name])
                     Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: /*Text(el), */ Image.network(el),
+                      child: Image.network(el),
                     ),
 
                 // вариант 2
