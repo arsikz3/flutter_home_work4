@@ -33,7 +33,7 @@ class _MyHomePageState extends State<MyHomePage> {
   final List fakeData = List.generate(100, (index) => index.toString());
 
   Map<String, dynamic> data = {
-    'Мои фото': [
+    'Мои фотографии': [
       'https://picsum.photos/1200/501',
       'https://picsum.photos/1200/502',
       'https://picsum.photos/1200/503',
