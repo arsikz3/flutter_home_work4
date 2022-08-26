@@ -91,31 +91,12 @@ class _MyHomePageState extends State<MyHomePage> {
                         if (loadingProgress == null) {
                           return child;
                         } else {
-                          return Center(
-                              child: const CircularProgressIndicator(
+                          return const Center(
+                              child: CircularProgressIndicator(
                             strokeWidth: 8,
                           ));
                         }
-                      }
-
-/*
-                    loadingBuilder: (BuildContext context, Widget child,
-                        ImageChunkEvent? loadingProgress) {
-                      if (loadingProgress == null) {
-                        return child;
-                      }
-
-                      return Center(
-                        child: CircularProgressIndicator(
-                          value: loadingProgress.expectedTotalBytes != null
-                              ? loadingProgress.cumulativeBytesLoaded /
-                                  loadingProgress.expectedTotalBytes!
-                              : null,
-                        ),
-                      );
-                    },
-                    */
-                      );
+                      });
                 });
           }).toList(),
         ),
