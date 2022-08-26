@@ -72,6 +72,7 @@ class _MyHomePageState extends State<MyHomePage> {
         body: TabBarView(
           children: data.keys.map((name) {
             return ListView.builder(
+                key: PageStorageKey(name),
                 itemCount: data[name].length,
                 itemBuilder: (BuildContext ctx, int index) {
                   return Image.network(data[name][index],
