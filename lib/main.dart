@@ -71,35 +71,52 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         body: TabBarView(
           children: data.keys.map((name) {
-            return ListView(
-              key: PageStorageKey(name),
-              children: <Widget>[
-                if (data[name] != null)
-                  for (var element in data[name])
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: //Image.network(el),
-                          Image.network(
-                        element,
-                        fit: BoxFit.cover,
-                        repeat: ImageRepeat.noRepeat,
-                        errorBuilder: (context, error, stackTrace) {
-                          return Container(
-                            color: Colors.amber,
-                            alignment: Alignment.center,
-                            child: const Text(
-                              'Whoops!',
-                              style: TextStyle(fontSize: 30),
-                            ),
-                          );
-                        },
-                      ),
-                    ),
+            return ListView.builder(
+                itemCount: data[name].length,
+                itemBuilder: (BuildContext ctx, int index) {
+                  return Image.network(data[name][index],
+                      fit: BoxFit.fill,
+                      errorBuilder: (context, url, error) => Container(
+                          color: Colors.grey,
+                          height: 50,
+                          child: const Icon(
+                            Icons.error,
+                            size: 36,
+                          )),
+                      frameBuilder:
+                          (context, child, frame, wasSynchronouslyLoaded) {
+                        return child;
+                      },
+                      loadingBuilder: (context, child, loadingProgress) {
+                        if (loadingProgress == null) {
+                          return child;
+                        } else {
+                          return Center(
+                              child: const CircularProgressIndicator(
+                            strokeWidth: 8,
+                          ));
+                        }
+                      }
 
-                // вариант 2
-                //...data[name].map((value) => Image.network(value.toString()))
-              ],
-            );
+/*
+                    loadingBuilder: (BuildContext context, Widget child,
+                        ImageChunkEvent? loadingProgress) {
+                      if (loadingProgress == null) {
+                        return child;
+                      }
+
+                      return Center(
+                        child: CircularProgressIndicator(
+                          value: loadingProgress.expectedTotalBytes != null
+                              ? loadingProgress.cumulativeBytesLoaded /
+                                  loadingProgress.expectedTotalBytes!
+                              : null,
+                        ),
+                      );
+                    },
+                    */
+                      );
+                });
           }).toList(),
         ),
       ),
