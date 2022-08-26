@@ -75,29 +75,32 @@ class _MyHomePageState extends State<MyHomePage> {
                 key: PageStorageKey(name),
                 itemCount: data[name].length,
                 itemBuilder: (BuildContext ctx, int index) {
-                  return Image.network(data[name][index],
-                      fit: BoxFit.fill,
-                      errorBuilder: (context, url, error) => Container(
-                          color: Colors.grey,
-                          height: 50,
-                          child: const Icon(
-                            Icons.error,
-                            size: 36,
-                          )),
-                      frameBuilder:
-                          (context, child, frame, wasSynchronouslyLoaded) {
-                        return child;
-                      },
-                      loadingBuilder: (context, child, loadingProgress) {
-                        if (loadingProgress == null) {
+                  return Container(
+                    color: Colors.red,
+                    child: Image.network(data[name][index],
+                        fit: BoxFit.fill,
+                        errorBuilder: (context, url, error) => Container(
+                            color: Colors.grey,
+                            height: 50,
+                            child: const Icon(
+                              Icons.error,
+                              size: 36,
+                            )),
+                        frameBuilder:
+                            (context, child, frame, wasSynchronouslyLoaded) {
                           return child;
-                        } else {
-                          return const Center(
-                              child: CircularProgressIndicator(
-                            strokeWidth: 8,
-                          ));
-                        }
-                      });
+                        },
+                        loadingBuilder: (context, child, loadingProgress) {
+                          if (loadingProgress == null) {
+                            return child;
+                          } else {
+                            return const Center(
+                                child: CircularProgressIndicator(
+                              strokeWidth: 8,
+                            ));
+                          }
+                        }),
+                  );
                 });
           }).toList(),
         ),
